@@ -1,0 +1,30 @@
+<mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (input)="onSearchInput($event)">
+</mat-form-field>
+
+<button (click)="log()">Log</button>
+
+@for (todo of this.todosView$ | async; track todo.id) {
+    <div>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>{{ todo.title }}</mat-card-title>
+                <mat-card-subtitle>{{ todo.createdAt | date : 'medium' }}</mat-card-subtitle>
+                <p>{{priorityLocalize[todo.priority]}}</p>
+            </mat-card-header>
+            <mat-card-actions>
+                <button mat-button class="mat-primary">DONE</button>
+                <button mat-button class="mat-warn" (click)="onTodoRemove(todo.id)">REMOVE</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+} @empty {
+    <p>Add your first todo!!!</p>
+}
+
+<button mat-button class="mat-primary" (click)="addRandom()">Add random</button>
+
+<div>
+    <app-todo-add-form (onSubmit)="onTodoAdd($event)"></app-todo-add-form>
+</div>

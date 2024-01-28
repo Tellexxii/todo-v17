@@ -1,0 +1,19 @@
+<form [formGroup]="todoForm" (ngSubmit)="onSubmitClick()">
+    <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Choose an option</mat-label>
+        <mat-select formControlName="priority">
+            @for (priority of priorityOptions; track priority) {
+                <mat-option [value]="priority[0]">{{priority[0]}} - {{priority[1]}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <button mat-button type="submit">Add Todo</button>
+</form>
