@@ -3,7 +3,7 @@
     <input matInput (input)="onSearchInput($event)">
 </mat-form-field>
 
-<button (click)="log()">Log</button>
+<button (click)="log()">Logger</button>
 
 @for (todo of this.todosView$ | async; track todo.id) {
     <div>
